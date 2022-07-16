@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
-@Component
+
 public class MyFirstTimerRouter extends RouteBuilder {
 
     @Autowired
@@ -24,7 +24,7 @@ public class MyFirstTimerRouter extends RouteBuilder {
                 .bean(getCurrentTimeBean,"getCurrentTime")
                 .log("${body}")
                 .bean(loggingComponent)
-                .log("${body}")
+                .process(new SimpleLoggingProcessor())
                 .to("log:first-timer");
     }
 }
